@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+    <link rel="stylesheet" id="google-font-css"  href="http://fonts.googleapis.com/css?family=Raleway%7COswald%3A400&#038;ver=4.0.12" type="text/css"/>
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/vis.css" rel="stylesheet">
+    <link href="lib/angular-carousel/dist/angular-carousel.css" rel="stylesheet" type="text/css" />
+    <script id="item-template" type="text/x-handlebars-template">
+      <div class="evento">
+        <h3 class="evento-titulo">
+          {{titulo}}
+        </h3>
+        <section class="evento-seccion">
+          <div class="img-seccion">
+            <img src="{{imagen}}">
+          </div>
+          <div class="descripcion-seccion">
+            <h4>
+              Fecha:  {{fecha}}
+            </h4>
+            <p class="textoEvento">
+              {{descripcion}}
+            </p>
+          </div>
+        </section>
+      </div>
+    </script>
+  </head>
+  <body ng-app="starter">
+    <ion-nav-view></ion-nav-view>
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/handlebars.min.js"></script>
+    <script src="js/vis.js"></script>
+    <script src="lib/angular-touch/angular-touch.min.js"></script>
+    <script src="lib/angular-carousel/dist/angular-carousel.min.js"></script>
+    <script src="lib/angular-animate/angular-animate.min.js"></script>
+    <script src="lib/pouchdb-5.4.5.min.js"></script>
+    <script src="lib/jwplayer/jwplayer.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/ionic-rating.min.js"></script>
+  </body>
+</html>

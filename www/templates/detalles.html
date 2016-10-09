@@ -1,0 +1,74 @@
+<ion-view view-title="Detalles: {{timeline.titulo}}">
+  <div class="bar bar-loading bar-assertive" ng-if="conexion">
+      Sin conexion a internet
+    </div>
+  <ion-content class="fondo-store has-header">
+    <div class="row">
+      <div class="card col">
+        <div class="row">
+        <div class="col col-50 contenedor-img-details">
+          <div  class="img-details">
+            <img src="{{timeline.img}}">
+          </div>
+        </div>
+        <div class="col container-details" style="padding-left:12px;">
+          <h2 >{{timeline.titulo}}</h2>
+          <div class="meta-data row row-wrap">
+            <div class="col col-50 item-metadata">
+              <div class="row">
+                <div class="col col-10 containermetadata-icon">
+                  <i class="icon ion-android-person metadata-icon"></i>
+                </div>
+                <div class="col containermetadata-tag">Autor
+                  <div class="metadata-tag-value">{{timeline.autor}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="col col-50 item-metadata">
+              <div class="row">
+                <div class="col col-10 containermetadata-icon">
+                  <i class="icon ion-calendar metadata-icon"></i>
+                </div>
+                <div class="col containermetadata-tag">Fecha
+                  <div class="metadata-tag-value">{{timeline.Index.cuando.fecha}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="col col-50 item-metadata">
+              <div class="row">
+                <div class="col col-10 containermetadata-icon">
+                  <i class="icon ion-university metadata-icon"></i>
+                </div>
+                <div class="col containermetadata-tag">Colegio
+                  <div class="metadata-tag-value">{{timeline.Index.quien.colegio}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="col col-50 item-metadata">
+              <div class="row">
+                <div class="col col-10 containermetadata-icon">
+                  <i class="icon ion-ios-book metadata-icon"></i>
+                </div>
+                <div class="col containermetadata-tag">Área
+                  <div class="metadata-tag-value">{{timeline.Index.que.area}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div  class="container-rating">Valoracion</div>
+          <rating class="valoracion1" ng-model="timeline.valoracion" max="5"></rating>
+          <button class="button button-block button-detalles" ng-click="goTimeline(timeline_id)">
+            Visualizar
+          </button>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="contendor-tabs">
+      <tabs>
+          <pane ng-repeat="pane in panes" heading="{{pane.title}}" active="pane.active">{{pane.content}}</pane>
+      </tabs>
+    </div>
+  </ion-content>
+
+</ion-view>

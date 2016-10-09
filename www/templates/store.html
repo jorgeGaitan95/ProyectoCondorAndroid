@@ -1,0 +1,99 @@
+<ion-view view-title="Store">
+  <div class="bar bar-loading bar-assertive" ng-if="conexion">
+      Sin conexion a internet
+  </div>
+  <div class="bar bar-loading bar-energized" ng-if="actualizar">
+      Nuevos cambios en las lineas de tiempo adquiridas
+  </div>
+  <div class="panel-filtros" >
+    <div class="bar  item-input-inset bar-light">
+      <label class="item-input-wrapper">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input ng-model="query" type="search" placeholder="Search">
+      </label>
+    </div>
+    <ion-content>
+      <ion-list>
+        <div>
+          <ion-item class="item item-icon-right item-filtro" ng-click="toggleGroup(1)" ng-class="{active: isGroupShown(1)}">
+            <i class="icon icon-filtro" ng-class="isGroupShown(1) ? 'ion-minus' : 'ion-plus'"></i> &nbsp; Area
+          </ion-item>
+          <ion-checkbox ng-repeat="area in AreaGroup" ng-show="isGroupShown(1)" ng-model="Areas[area]">{{area}} ({{(lineasTiempo | filter:query |filter:count('area', area)).length}})</ion-checkbox>
+
+        </div>
+        <div>
+          <ion-item class="item item-icon-right item-filtro" ng-click="toggleGroup(2)" ng-class="{active: isGroupShown(2)}">
+            <i class="icon icon-filtro" ng-class="isGroupShown(2) ? 'ion-minus' : 'ion-plus'"></i> &nbsp; Materia
+          </ion-item>
+          <ion-checkbox data-ng-repeat="materia in MateriasGroup" ng-show="isGroupShown(2)" ng-model="Materias[materia]">{{materia}} ({{(lineasTiempo | filter:query |filter:count('materia', materia)).length}})</ion-checkbox>
+
+        </div>
+        <div>
+          <ion-item class="item item-icon-right item-filtro" ng-click="toggleGroup(3)" ng-class="{active: isGroupShown(3)}">
+            <i class="icon icon-filtro" ng-class="isGroupShown(3) ? 'ion-minus' : 'ion-plus'"></i> &nbsp; Tema
+          </ion-item>
+          <ion-checkbox data-ng-repeat="tema in TemasGroup" ng-show="isGroupShown(3)" ng-model="Temas[tema]">{{tema}} ({{(lineasTiempo | filter:query |filter:count('tema', tema)).length}})</ion-checkbox>
+
+        </div>
+        <div>
+          <ion-item class="item item-icon-right item-filtro" ng-click="toggleGroup(4)" ng-class="{active: isGroupShown(4)}">
+            <i class="icon icon-filtro" ng-class="isGroupShown(4) ? 'ion-minus' : 'ion-plus'"></i> &nbsp; Colegio
+          </ion-item>
+          <ion-checkbox data-ng-repeat="colegio in ColegiosGroup" ng-show="isGroupShown(4)" ng-model="Colegio[colegio]">{{colegio}} ({{(lineasTiempo | filter:query |filter:count('colegio', colegio)).length}})</ion-checkbox>
+
+        </div>
+        <div>
+          <ion-item class="item item-icon-right item-filtro" ng-click="toggleGroup(5)" ng-class="{active: isGroupShown(5)}">
+            <i class="icon icon-filtro" ng-class="isGroupShown(5) ? 'ion-minus' : 'ion-plus'"></i> &nbsp; Profesor
+          </ion-item>
+          <ion-checkbox data-ng-repeat="profesor in ProfesoresGroup" ng-show="isGroupShown(5)" ng-model="Profesor[profesor]">{{profesor}} ({{(lineasTiempo | filter:query |filter:count('profesor', profesor)).length}})</ion-checkbox>
+
+        </div>
+        <div>
+          <ion-item class="item item-icon-right item-filtro" ng-click="toggleGroup(6)" ng-class="{active: isGroupShown(6)}">
+            <i class="icon icon-filtro" ng-class="isGroupShown(6) ? 'ion-minus' : 'ion-plus'"></i> &nbsp; Alumno
+          </ion-item>
+          <ion-checkbox data-ng-repeat="alumno in AlumnosGroup" ng-show="isGroupShown(6)" ng-model="Alumno[alumno]">{{alumno}} ({{(lineasTiempo | filter:query |filter:count('alumno', alumno)).length}})</ion-checkbox>
+
+        </div>
+        <div>
+          <ion-item class="item item-icon-right item-filtro" ng-click="toggleGroup(7)" ng-class="{active: isGroupShown(7)}">
+            <i class="icon icon-filtro" ng-class="isGroupShown(7) ? 'ion-minus' : 'ion-plus'"></i> &nbsp; Pais
+          </ion-item>
+          <ion-checkbox data-ng-repeat="pais in paisGroup" ng-show="isGroupShown(7)" ng-model="Pais[pais]">{{pais}} ({{(lineasTiempo | filter:query |filter:count('pais', pais)).length}})</ion-checkbox>
+
+        </div>
+        <div>
+          <ion-item class="item item-icon-right item-filtro" ng-click="toggleGroup(8)" ng-class="{active: isGroupShown(8)}">
+            <i class="icon icon-filtro" ng-class="isGroupShown(8) ? 'ion-minus' : 'ion-plus'"></i> &nbsp; Departamento
+          </ion-item>
+          <ion-checkbox data-ng-repeat="departamento in DepartamentoGroup" ng-show="isGroupShown(8)" ng-model="Departamento[departamento]">{{departamento}} ({{(lineasTiempo | filter:query |filter:count('departamento', departamento)).length}})</ion-checkbox>
+
+        </div>
+        <div>
+          <ion-item class="item item-icon-right item-filtro" ng-click="toggleGroup(9)" ng-class="{active: isGroupShown(9)}">
+            <i class="icon icon-filtro" ng-class="isGroupShown(9) ? 'ion-minus' : 'ion-plus'"></i> &nbsp; Ciudad
+          </ion-item>
+          <ion-checkbox data-ng-repeat="ciudad in CiudadesGroup" ng-show="isGroupShown(9)" ng-model="Ciudad[ciudad]">{{ciudad}} ({{(lineasTiempo | filter:query |filter:count('municipio', ciudad)).length}})</ion-checkbox>
+
+        </div>
+      </ion-list>
+    </ion-content>
+  </div>
+  <ion-content class="fondo-store padding panel-contenido" ng-class="conexion===true || actualizar==true ? 'content-sin-conexion':''">
+    <h2 class="heading" ng-if="filteredAdquiridas.length>0">Adquiridas</h2>
+    <div class=" row row-wrap padding-none">
+      <div class="col col-25 card-item" ng-repeat="item in filteredAdquiridas | filter:query track by item._id">
+        <div class="card card-timeline">
+          <div class="item" ng-click="viewDetails(item._id)">
+            <img class="full-image img-cardtimeline" ng-src="{{item.img}}">
+            <h2>{{item.titulo}}</h2>
+            <rating ng-model="item.valoracion" max="5" style=""></rating>
+          </div>
+          <a class="item icon ion-eye cardtimeline-link" href="#/app/store/{{item._id}}"> Ver Detalles
+          </a>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

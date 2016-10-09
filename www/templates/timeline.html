@@ -1,0 +1,53 @@
+<ion-view view-title="Linea de Tiempo: {{nombreLineaTiempo}}">
+  <div class="fondoLoading" ng-if="loading">
+        <img src="img/loader1.gif" alt="" />
+  </div>
+  <div class="bar bar-header bar-light">
+    <h1 class="title">LINEA DE TIEMPO</h1>
+  </div>
+  <div class="caja">
+    <div class="header-caja">
+      <h3>Titulo del Evento: {{evento.titulo}}</h3>
+    </div>
+    <div class="body-caja">
+      <div class="contenido-body row">
+        <div class="contextoEvento col col-25">
+          <h4>Fecha: {{evento.fecha}}</h4>
+          <img src="{{evento.imagen}}" class="img-evento" alt="">
+          <h5>{{evento.descripcion}}</h5>
+        </div>
+        <div class="col contendor-galeria">
+            <ul rn-carousel rn-carousel-index="carouselIndex" rn-carousel-controls rn-carousel-transition="slide"
+      rn-carousel-buffered class="slider-galeria card">
+              <li class="body-slider {{slide.tipo}}" ng-repeat="slide in evento.galeria" ng-include="getIncludeFile(slide.tipo)">
+
+              </li>
+            </ul>
+            <div rn-carousel-indicators ng-if="evento.galeria.length > 1" slides="evento.galeria" rn-carousel-index="carouselIndex" class="indicacoresSlider"></div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="panel-fondo">
+  </div>
+  <div class="zoom">
+    <div class="zoom-out" ng-click="zoom(0.2)"></div>
+    <div class="zoom-in" ng-click="zoom(-0.2)"></div>
+  </div>
+  <div class="textEvnInfo" ng-if="showMensajeEventos">
+    {{mensajeEventos}}
+  </div>
+  <div class="cont1">
+    {{evntsIzq}}
+  </div>
+  <div class="cont2">
+    {{evntsDerecha}}
+  </div>
+  <div class="left botonEvento" ng-click="prevEvent()" ng-class="{'disable':evntsIzq==0}">
+    <div class="imgBoton"></div>
+  </div>
+  <div class="right botonEvento" ng-click="nextEvent()" ng-class="{'disable':evntsDerecha==0}">
+    <div class="imgBoton"></div>
+  </div>
+  <div id="visualization" class="containerTimeline"></div>
+</ion-view>

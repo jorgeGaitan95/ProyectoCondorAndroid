@@ -1,0 +1,30 @@
+<ion-view view-title="Login">
+  <div class="bar bar-header bar-light">
+    <h1 class="title">Login</h1>
+  </div>
+  <div class="bar bar-loading bar-assertive" ng-if="sinConexion">
+      Sin conexion a internet
+  </div>
+  <div class="row row-stretch container-login">
+    <div class="col col-center">
+      <div class="box-login">
+        <h2 class="header-login">Inicio de sesion</h2>
+        <form class="body-box-login" ng-submit="doLogin()">
+          <div class="list">
+            <div class="padding">
+              <label class="label-login"> Usuario:</label>
+              <input class="input-login" type="text" ng-model="loginData.username">
+              <label class="label-login">Contraseña:</label>
+              <input class="input-login" type="password" ng-model="loginData.password">
+            </div>
+            <div class="row login-button">
+              <div class="col text-center container-login-button">
+                <button class="button button-detalles" type="submit">Iniciar Sesion</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ion-view>
